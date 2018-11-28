@@ -1,0 +1,32 @@
+Metadata-Version: 2.1
+Name: anaxdb
+Version: 0.9.3
+Summary: An encrypted non-linear database based on Pandas
+Home-page: https://github.com/abrahamrhoffman/anaxdb
+Author: Abraham Hoffman
+Author-email: abrahamrhoffman@gmail.com
+License: UNKNOWN
+Description: # AnaxDb
+        <i>An encrypted non-linear database based on Pandas</i>
+        
+        For more details please see the examples <a href="https://github.com/abrahamrhoffman/AnaxDb/tree/master/examples">here</a>
+        
+        ### Install AnaxDb
+        
+        ```
+        git clone https://github.com/abrahamrhoffman/AnaxDb.git
+        cd AnaxDb
+        pip install -r requirements.txt
+        ```
+        
+        ### Usage
+        
+        ```
+        import anaxdb
+        ```
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 2
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
