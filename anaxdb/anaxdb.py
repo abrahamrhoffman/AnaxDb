@@ -263,7 +263,7 @@ class Database(object):
             try:
                 tableFile = (self._path + "/" + aTableName + ".pq")
                 tableFileEnc = (self._path + "/" + aTableName + ".enc")
-                self._decrypt(tableFileEnc)
+                self._decrypt(tableFile)
                 dataframe = pq.read_table(tableFile).to_pandas()
                 os.remove(tableFile)
                 return dataframe

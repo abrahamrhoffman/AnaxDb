@@ -1,8 +1,0 @@
-pandas
-numpy
-pyarrow
-matplotlib
-seaborn
-pycryptodome
-pathlib
-minio
