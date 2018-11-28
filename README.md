@@ -6,9 +6,9 @@ Please see the example <a href="">
 ### Install AnaxDb
 
 <code>
-git clone https://github.com/abrahamrhoffman/AnaxDb.git
-cd AnaxDb
-pip install -r requirements.txt
+git clone https://github.com/abrahamrhoffman/AnaxDb.git<br>
+cd AnaxDb<br>
+pip install -r requirements.txt<br>
 </code>
 
 ### Usage
