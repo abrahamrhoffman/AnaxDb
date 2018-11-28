@@ -1,9 +1,0 @@
-README.md
-setup.py
-anaxdb/__init__.py
-anaxdb/anaxdb.py
-anaxdb/storage.py
-anaxdb.egg-info/PKG-INFO
-anaxdb.egg-info/SOURCES.txt
-anaxdb.egg-info/dependency_links.txt
-anaxdb.egg-info/top_level.txt
