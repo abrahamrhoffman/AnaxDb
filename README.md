@@ -1,7 +1,7 @@
 # AnaxDb
 An encrypted non-linear database based on Pandas
 
-Please see the example <a href="">
+For more details please see the examples <a href="https://github.com/abrahamrhoffman/AnaxDb/tree/master/examples">here</a>
 
 ### Install AnaxDb
 
@@ -16,5 +16,3 @@ pip install -r requirements.txt
 ```
 import anaxdb
 ```
-
-For more details please see the examples <a href="https://github.com/abrahamrhoffman/AnaxDb/tree/master/examples">here</a>
