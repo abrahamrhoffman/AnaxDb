@@ -20,25 +20,25 @@ anax.Database(bootstrap=True);
 Created: '{pwd}/config.ini'
 ```
 
-Anax controls the database parameters with 'config.ini'. By default, Anax will look in '{pwd}/config.ini' and, if not present, generate the file for you. You can override this behavior with `config_path="<some_path>"`.
-
 The database is set up!
 
 ### Connect to the Database
 
-Create a new database connection:
+Connect to the database:
 
 ```
 anax = anax.Database()
 ```
 
-You are now connected.
+Show tables.
 
 ```
 anax.tables()
 
 ['users']
 ```
+
+Read a table.
 
 ```
 anaxdb.read("users")
