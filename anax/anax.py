@@ -139,7 +139,11 @@ class Database(object):
             out_file.write(cipher_aes.nonce)
             out_file.write(tag)
             out_file.write(ciphertext)
-        os.remove(readPath)
+        try:
+            os.remove(readPath)
+        except:
+            raise Exception("Unable to remove parquet file: '{}'"
+                            .format(readPath))
 
     def _decrypt(self, tableFile):
         encTableFile = tableFile.replace("pq", "enc")
@@ -173,13 +177,13 @@ class Database(object):
         try:
             shutil.rmtree(self._path)
         except:
-            return ("Failed to purge requested folder: '{}'"
-                    .format(self._path))
+            pass
+            #return ("Failed to purge requested folder: '{}'"
+            #        .format(self._path))
 
         # Create a new local directory
         try:
-            cmd = ("mkdir -p {}".format(self._path))
-            subprocess.call(cmd, shell=True)
+            os.makedirs(self._path)
         except:
             return ("Failed to create initial local directory: '{}'"
                     .format(self._path))
@@ -256,7 +260,7 @@ class Database(object):
             return tables
 
     def create(self, aTableName, aDict, order=None):
-        # Creating new tables requires a dict with keys as lists
+        # Creating new tables requires a dict with values as lists
         # Example ::
         #    my_list0 = [1,2,3]
         #    my_list1 = [3,4,5]
@@ -277,9 +281,17 @@ class Database(object):
         if self._objStore_flag:
             try:
                 objPath = (self._path + "/" + aTableName + ".enc")
-                self._objStore.get_object(self._admin_username, objPath)
+                self._objStore.remove_object(self._admin_username, objPath)
             except:
-                pass
+                return ("File not found. Check bucket '{}' for object '{}'"
+                        .format(self._admin_username, objPath))
+        else:
+            try:
+                filePath = (self._path + "/" + aTableName + ".enc")
+                os.remove(filePath)
+            except:
+                return ("File not found. Check path '{}'"
+                        .format(filePath))
 
     def read(self, aTableName):
         if self._objStore_flag:
