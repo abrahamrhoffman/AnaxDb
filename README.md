@@ -1,8 +1,6 @@
 # AnaxDb
 <i>An encrypted non-linear database based on Pandas</i>
 
-<i>Anax: The first man to discover infinity</i>
-
 ### Install AnaxDb
 
 ```
