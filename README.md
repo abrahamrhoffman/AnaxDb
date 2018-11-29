@@ -38,7 +38,7 @@ anax.tables()
 Read a table.
 
 ```
-anaxdb.read("users")
+anax.read("users")
 
                                 uid username              email  password  admin
 0  54c355db7d3d432ca8bfea093affb501    admin  admin@example.com  YWRtaW4=   True
