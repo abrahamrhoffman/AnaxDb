@@ -1,5 +1,5 @@
 # AnaxDb
-<i>An encrypted non-linear database based on Pandas</i>
+<b>An encrypted non-linear Pandas database</b>
 
 ### Install AnaxDb
 
