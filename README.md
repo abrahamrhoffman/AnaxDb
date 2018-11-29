@@ -46,5 +46,5 @@ anaxdb.read("users")
 0  54c355db7d3d432ca8bfea093affb501    admin  admin@example.com  YWRtaW4=   True
 ```
 
-There is much more to Anax. For more examples click <a href="https://github.com/abrahamrhoffman/AnaxDb/tree/master/examples">here</a>.
+There is much more to Anax. For examples and explanations click <a href="https://github.com/abrahamrhoffman/AnaxDb/tree/master/examples">here</a>.
 
