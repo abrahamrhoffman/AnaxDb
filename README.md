@@ -19,8 +19,6 @@ Next, bootstrap a new database.
 anax.Database(bootstrap=True);
 ```
 
-The database is set up!
-
 ### Connect to the Database
 
 Connect to the database:
