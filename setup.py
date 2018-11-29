@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="anax",
-    version="0.9.9.6",
+    version="0.9.9.7",
     author="Abraham Hoffman",
     author_email="abrahamrhoffman@gmail.com",
     description="An encrypted non-linear database based on Pandas",
