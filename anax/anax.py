@@ -5,6 +5,7 @@ from Crypto.PublicKey import RSA
 import pyarrow.parquet as pq
 import pyarrow as pa
 import pandas as pd
+import subprocess
 import pathlib
 import base64
 import shutil
@@ -21,7 +22,7 @@ class Database(object):
     #### Private Methods ####
 
     def __init__(self, config_path="", bootstrap=False, object_storage=False):
-        if config_path == "":
+        if config_path = "":
             self._init_config()
             self._config_path = ("config.ini")
         else:
@@ -177,7 +178,8 @@ class Database(object):
 
         # Create a new local directory
         try:
-            os.makedirs(self._path)
+            cmd = ("mkdir -p {}".format(self._path))
+            subprocess.call(cmd, shell=True)
         except:
             return ("Failed to create initial local directory: '{}'"
                     .format(self._path))
