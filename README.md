@@ -19,15 +19,15 @@ Next, bootstrap a new database.
 anax.Database(bootstrap=True);
 ```
 
-### Connect to the Database
+### Using the Database
 
-Connect to the database:
+Connect:
 
 ```
 anax = anax.Database()
 ```
 
-Show tables.
+Show tables:
 
 ```
 anax.tables()
@@ -35,7 +35,7 @@ anax.tables()
 ['users']
 ```
 
-Read a table.
+Read a table:
 
 ```
 anax.read("users")
