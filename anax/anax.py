@@ -21,7 +21,7 @@ class Database(object):
     #### Private Methods ####
 
     def __init__(self, config_path="", bootstrap=False, object_storage=False):
-        if config_path = "":
+        if config_path == "":
             self._init_config()
             self._config_path = ("config.ini")
         else:
