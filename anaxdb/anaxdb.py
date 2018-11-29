@@ -21,12 +21,38 @@ class Database(object):
     #### Private Methods ####
 
     def __init__(self, bootstrap=False, object_storage=False):
+        self._init_config()
         if object_storage: self._objStore_flag = object_storage
         else: self._objStore_flag = False
         self._init_cVars()
         if object_storage: self._objStore = self._init_objStore()
         if bootstrap: self._bootstrap()
         self._check_keys()
+
+    def _init_config(self):
+        if not os.path.isfile("config.ini"):
+            f = open("config.ini", "w")
+            template = """
+                [database]
+                default_folder = db
+                admin_username = admin
+                admin_secret = admin
+                admin_email = admin@example.com
+                admin_password = admin
+                initial_table_name = users
+
+                [object_storage]
+                address = 1.2.3.4
+                port = 9000
+                access_key = supersecret
+                secret_key = supersecret
+                ssl_flag = False
+                """
+            template = template.splitlines()[1:-2]
+            for ix, ele in enumerate(template):
+                f.write(str("".join(ele.split())) + "\n")
+            f.close()
+            print("Created: '{}/config.ini'".format(os.getcwd()))
 
     def _init_cVars(self):
         # Parse Config File #
