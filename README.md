@@ -20,7 +20,7 @@ anax.Database(bootstrap=True);
 Created: '{pwd}/config.ini'
 ```
 
-Anax controls the database parameters through a config file: 'config.ini' By default, Anax will look in '{pwd}/config.ini' and,  if not present, generate the file for you. You can override this behavior with `config_path="<some_path>"`.
+Anax controls the database parameters with 'config.ini'. By default, Anax will look in '{pwd}/config.ini' and, if not present, generate the file for you. You can override this behavior with `config_path="<some_path>"`.
 
 The database is set up!
 
