@@ -20,8 +20,16 @@ class Database(object):
 
     #### Private Methods ####
 
-    def __init__(self, bootstrap=False, object_storage=False):
-        self._init_config()
+    def __init__(self, config_path="", bootstrap=False, object_storage=False):
+        if config_path = "":
+            self._init_config()
+            self._config_path = ("config.ini")
+        else:
+            if ("config.ini") not in config_path:
+                raise Exception("'config.ini' must be in config_path")
+            else:
+                self._config_path = config_path
+
         if object_storage: self._objStore_flag = object_storage
         else: self._objStore_flag = False
         self._init_cVars()
@@ -57,7 +65,7 @@ class Database(object):
     def _init_cVars(self):
         # Parse Config File #
         parser = SafeConfigParser()
-        parser.read('config.ini')
+        parser.read(self._config_path)
 
         # Read Database Config :: Required! #
         self._db_folder = parser.get("database", "default_folder")
