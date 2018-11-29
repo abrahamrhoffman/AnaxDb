@@ -17,7 +17,6 @@ Next, bootstrap a new database.
 
 ```
 anax.Database(bootstrap=True);
-Created: '{pwd}/config.ini'
 ```
 
 The database is set up!
