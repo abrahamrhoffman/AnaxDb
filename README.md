@@ -1,8 +1,6 @@
 # AnaxDb
 An encrypted non-linear database based on Pandas
 
-<a href="https://asciinema.org/a/1Zedo6gkiRrp5M5FyKaRLVXpd"><img src="https://asciinema.org/a/1Zedo6gkiRrp5M5FyKaRLVXpd.png" width="836"/></a>
-
 ### Install AnaxDb
 
 ```
