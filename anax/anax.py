@@ -18,8 +18,7 @@ from storage import Storage
 
 class Database(object):
 
-
-    #### Private Methods ####
+    # ### Private Methods ### #
 
     def __init__(self, config_path="", bootstrap=False, object_storage=False):
         if config_path == "":
@@ -31,11 +30,15 @@ class Database(object):
             else:
                 self._config_path = config_path
 
-        if object_storage: self._objStore_flag = object_storage
-        else: self._objStore_flag = False
+        if object_storage:
+            self._objStore_flag = object_storage
+        else:
+            self._objStore_flag = False
         self._init_cVars()
-        if object_storage: self._objStore = self._init_objStore()
-        if bootstrap: self._bootstrap()
+        if object_storage:
+            self._objStore = self._init_objStore()
+        if bootstrap:
+            self._bootstrap()
         self._check_keys()
 
     def _init_config(self):
@@ -88,7 +91,7 @@ class Database(object):
             self._secret_key = parser.get("object_storage", "secret_key")
             try:
                 self._ssl_flag = eval(parser.get("object_storage", "ssl_flag"))
-            except:
+            except Exception:
                 return ("ssl_flag must be either 'True' or 'False'")
 
     def _init_objStore(self):
@@ -96,7 +99,7 @@ class Database(object):
             session = Storage(self._address, self._port, self._access_key,
                               self._secret_key, secure=self._ssl_flag)
             return session
-        except:
+        except Exception:
             return ("Connection to object storage server '{}' failed"
                     .format(self._address + ":" + self._port))
 
@@ -141,7 +144,7 @@ class Database(object):
             out_file.write(ciphertext)
         try:
             os.remove(readPath)
-        except:
+        except Exception:
             raise Exception("Unable to remove parquet file: '{}'"
                             .format(readPath))
 
@@ -149,9 +152,11 @@ class Database(object):
         encTableFile = tableFile.replace("pq", "enc")
         with open(encTableFile, 'r') as fobj:
             private_key = \
-                RSA.import_key(open(self._dbPriv).read(),passphrase=self._secret)
+                RSA.import_key(open(self._dbPriv).read(),
+                               passphrase=self._secret)
             enc_session_key, nonce, tag, ciphertext = \
-                [fobj.read(x) for x in (private_key.size_in_bytes(), 16, 16, -1)]
+                [fobj.read(x)
+                    for x in (private_key.size_in_bytes(), 16, 16, -1)]
             cipher_rsa = PKCS1_OAEP.new(private_key)
             session_key = cipher_rsa.decrypt(enc_session_key)
             cipher_aes = AES.new(session_key, AES.MODE_EAX, nonce)
@@ -163,42 +168,42 @@ class Database(object):
         return fileData
 
     def _purge(self):
-        ## Purge database folder and recreate folders and keys! ##
+        # # Purge database folder and recreate folders and keys! # #
 
         # Purge object storage bucket and objects
         if self._objStore_flag:
             try:
                 self._objStore.wipe_bucket(self._admin_username)
-            except:
+            except Exception:
                 return ("Failed to connect to object storage server: '{}'"
                         .format(self._objStore._session._endpoint_url))
 
         # Purge local directory
         try:
             shutil.rmtree(self._path)
-        except:
+        except Exception:
             pass
-            #return ("Failed to purge requested folder: '{}'"
+            # return ("Failed to purge requested folder: '{}'"
             #        .format(self._path))
 
         # Create a new local directory
         try:
             os.makedirs(self._path)
-        except:
+        except Exception:
             return ("Failed to create initial local directory: '{}'"
                     .format(self._path))
 
         # Create new Encryption Keys
         try:
             self._create_keys()
-        except:
+        except Exception:
             return ("Failed to create initial encryption keys")
 
         # Create a new object store bucket
         if self._objStore_flag:
             try:
                 self._objStore.create_bucket(self._admin_username)
-            except:
+            except Exception:
                 return ("Failed to create initial object storage bucket: '{}'"
                         .format(self._path))
 
@@ -218,7 +223,7 @@ class Database(object):
         try:
             f = open(tableFile, "w+")
             f.close()
-        except:
+        except Exception:
             print("Database creation failed. Check Path: {}"
                   .format(tableFile))
 
@@ -243,20 +248,21 @@ class Database(object):
         # Fill database with initial information
         try:
             self.write(aTable, self._initial_table_name)
-        except:
+        except Exception:
             return ("Initial db creation failed. Check _bootstrap method.")
 
-
-    #### Public Methods ####
+    # ### Public Methods ### #
 
     def tables(self):
         if self._objStore_flag:
             t = self._objStore.list_objects(self._admin_username)
-            tables = [ele.split("/")[-1].split(".")[0] for ix, ele in enumerate(t)]
+            tables = [ele.split("/")[-1].split(".")[0]
+                      for ix, ele in enumerate(t)]
             return tables
         else:
             t = glob.glob(self._path + "/*")
-            tables = [ele.split("/")[-1].split(".")[0] for ix, ele in enumerate(t)]
+            tables = [ele.split("/")[-1].split(".")[0]
+                      for ix, ele in enumerate(t)]
             return tables
 
     def create(self, aTableName, aDict, order=None):
@@ -282,14 +288,14 @@ class Database(object):
             try:
                 objPath = (self._path + "/" + aTableName + ".enc")
                 self._objStore.remove_object(self._admin_username, objPath)
-            except:
+            except Exception:
                 return ("File not found. Check bucket '{}' for object '{}'"
                         .format(self._admin_username, objPath))
         else:
             try:
                 filePath = (self._path + "/" + aTableName + ".enc")
                 os.remove(filePath)
-            except:
+            except Exception:
                 return ("File not found. Check path '{}'"
                         .format(filePath))
 
@@ -304,7 +310,7 @@ class Database(object):
                 os.remove(tableFile)
                 os.remove(objPath)
                 return dataframe
-            except:
+            except Exception:
                 return ("File not found. Check bucket '{}' for object '{}'"
                         .format(self._admin_username, objPath))
         else:
@@ -315,7 +321,7 @@ class Database(object):
                 dataframe = pq.read_table(tableFile).to_pandas()
                 os.remove(tableFile)
                 return dataframe
-            except:
+            except Exception:
                 return ("File not found. Check path '{}' for file '{}'"
                         .format(self._path, tableFile))
 

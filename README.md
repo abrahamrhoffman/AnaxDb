@@ -1,8 +1,6 @@
 # AnaxDb
 An encrypted non-linear database based on Pandas
 
-<a href="https://asciinema.org/a/1Zedo6gkiRrp5M5FyKaRLVXpd"><img src="https://asciinema.org/a/1Zedo6gkiRrp5M5FyKaRLVXpd.png" width="836"/></a>
-
 ### Install AnaxDb
 
 ```
@@ -48,3 +46,10 @@ anax.read("users")
 
 There is much more to Anax. For examples and explanations click <a href="https://github.com/abrahamrhoffman/AnaxDb/tree/master/examples">here</a>.
 
+# Development
+```
+cd AnaxDb
+python3 setup.py sdist
+pip3 install twine
+twine upload dist/*
+```
