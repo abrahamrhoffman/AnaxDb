@@ -14,7 +14,7 @@ setuptools.setup(
     url="https://github.com/abrahamrhoffman/anaxdb",
     install_requires=[
         'pandas==1.0.3',
-        'numpy==1.18.2',
+        'numpy==1.22.0',
         'pyarrow==0.16.0',
         'matplotlib==3.2.1',
         'seaborn==0.10.0',
