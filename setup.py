@@ -15,7 +15,7 @@ setuptools.setup(
     install_requires=[
         'pandas==1.0.3',
         'numpy==1.18.2',
-        'pyarrow==0.16.0',
+        'pyarrow==14.0.1',
         'matplotlib==3.2.1',
         'seaborn==0.10.0',
         'pycryptodome==3.9.7',
