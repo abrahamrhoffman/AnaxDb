@@ -18,7 +18,7 @@ setuptools.setup(
         'pyarrow==0.16.0',
         'matplotlib==3.2.1',
         'seaborn==0.10.0',
-        'pycryptodome==3.9.7',
+        'pycryptodome==3.19.1',
         'pathlib==1.0.1',
         'minio==5.0.8'
     ],
